@@ -1,2 +1,2 @@
 # TransportadoraOOP
-Projeto aplicativo de gerenciamento de uma transportadora utilizando flaskAPI
+Back end feito em python com Flask API
