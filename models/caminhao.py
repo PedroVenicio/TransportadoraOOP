@@ -16,7 +16,7 @@ class Caminhao(db.Model):
     codigo = db.Column(db.Integer, primary_key = True, nullable=False, unique=True) #propriedades da coluna id
     marca = db.Column(db.String(100))
     kmrodados = db.Column(db.Integer(100))
-    codmotorista = db.Column(db.ForeignKey('motorista.codigo'))
+    codmotorista = db.Column(ForeignKey('motorista.codigo'))
     capacidade = db.Column(db.Float(100))
 
     motorista = relationship('Motoristas', backref='Caminhao')

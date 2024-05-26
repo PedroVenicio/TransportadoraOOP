@@ -16,28 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuarios`
+-- Table structure for table `demanda`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
+DROP TABLE IF EXISTS `demanda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarios` (
+CREATE TABLE `demanda` (
   `codigo` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) DEFAULT NULL,
-  `login` varchar(50) DEFAULT NULL,
-  `senha` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `remetente` varchar(50) DEFAULT NULL,
+  `enderecoRemetente` varchar(50) DEFAULT NULL,
+  `destinatario` varchar(50) DEFAULT NULL,
+  `enderecoDestinatario` varchar(50) DEFAULT NULL,
+  `carga` varchar(50) DEFAULT NULL,
+  `pesoCarga` float(8,2) DEFAULT NULL,
+  `codcaminhao` int DEFAULT NULL,
+  `valor` float(8,2) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `codcaminhao` (`codcaminhao`),
+  CONSTRAINT `demanda_ibfk_1` FOREIGN KEY (`codcaminhao`) REFERENCES `caminhao` (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuarios`
+-- Dumping data for table `demanda`
 --
 
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+LOCK TABLES `demanda` WRITE;
+/*!40000 ALTER TABLE `demanda` DISABLE KEYS */;
+/*!40000 ALTER TABLE `demanda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 22:25:28
+-- Dump completed on 2024-05-26  0:02:55

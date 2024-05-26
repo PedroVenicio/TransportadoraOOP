@@ -27,6 +27,7 @@ CREATE TABLE `caminhao` (
   `marca` varchar(50) DEFAULT NULL,
   `kmrodados` int DEFAULT NULL,
   `codmotorista` int DEFAULT NULL,
+  `capacidade` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`codigo`),
   KEY `codmotorista` (`codmotorista`),
   CONSTRAINT `caminhao_ibfk_1` FOREIGN KEY (`codmotorista`) REFERENCES `motorista` (`codigo`)
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 22:25:28
+-- Dump completed on 2024-05-26  0:02:55

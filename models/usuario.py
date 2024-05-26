@@ -10,7 +10,7 @@ class Usuario(db.Model):
             'senha': self.senha,
         }
     
-    codigo = db.Column(db.Integer, primary_key = True, nullable=False, unique=True) #propriedades da coluna id
+    codigo = db.Column(db.Integer, primary_key = True, nullable=False, unique=True)
     nome = db.Column(db.String(100))
     login = db.Column(db.String(100))
     Senha = db.Column(db.String(100))
