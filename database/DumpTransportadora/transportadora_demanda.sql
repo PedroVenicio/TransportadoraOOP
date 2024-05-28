@@ -35,7 +35,7 @@ CREATE TABLE `demanda` (
   PRIMARY KEY (`codigo`),
   KEY `codcaminhao` (`codcaminhao`),
   CONSTRAINT `demanda_ibfk_1` FOREIGN KEY (`codcaminhao`) REFERENCES `caminhao` (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `demanda` (
 
 LOCK TABLES `demanda` WRITE;
 /*!40000 ALTER TABLE `demanda` DISABLE KEYS */;
+INSERT INTO `demanda` VALUES (1,'mercado livre','Rua silicio 12','satc','Rua Pascoal 15','Banco de supino',999.00,1,1234.00);
 /*!40000 ALTER TABLE `demanda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-26  0:02:55
+-- Dump completed on 2024-05-28  0:10:31

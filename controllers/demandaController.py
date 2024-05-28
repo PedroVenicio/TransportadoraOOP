@@ -7,16 +7,16 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 print(data)
-                Demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['codCaminhao'], )
-                db.session.add(Demanda)
+                demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['codcaminhao'], data['valor'])
+                db.session.add(demanda)
                 db.session.commit()
-                return 'Demanda cadastrada com sucesso', 200
+                return 'demanda cadastrada com sucesso', 200
             except Exception as e:
-                return 'A Demanda não foi cadastrada Error: {}'.format(str(e)), 405
+                return 'A demanda não foi cadastrada Error: {}'.format(str(e)), 405
             
         elif request.method == 'GET':
             try:
-                data = Demanda.query.all()
+                data = demanda.query.all()
                 return render_template('demanda.html', data={'demanda': [demanda.to_dict() for demanda in data]})
 
             except Exception as e:
@@ -26,7 +26,7 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 put_demanda_id = data['codigo']
-                put_demanda = Demanda.query.get(put_demanda_id)
+                put_demanda = demanda.query.get(put_demanda_id)
                 if put_demanda is None:
                     return {'error': 'demanda não encontrado'}, 404
                 put_demanda.tipo = data.get('tipo', put_demanda.tipo)
@@ -40,8 +40,8 @@ def demanda_controller():
         elif request.method == 'DELETE':
             try:
                 data = request.get_json()
-                delete_demanda_id = data['id']
-                delete_demanda = Demanda.query.get(delete_demanda_id)
+                delete_demanda_id = data['codigo']
+                delete_demanda = demanda.query.get(delete_demanda_id)
                 if delete_demanda is None:
                     return {'error': 'demanda não encontrado'}, 404
                 db.session.delete(delete_demanda)

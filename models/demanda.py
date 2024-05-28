@@ -22,19 +22,19 @@ class Demanda(db.Model):
     enderecoRemetente = db.Column(db.String(100))
     enderecoDestinatario = db.Column(db.String(100))
     destinatario = db.Column(db.String(100))
-    valor = db.Column(db.Float(100))
     carga = db.Column(db.String(100))
     pesoCarga = db.Column(db.Float(100))
     codcaminhao = db.Column(ForeignKey('caminhao.codigo'))
+    valor = db.Column(db.Float(100))
 
-    caminhao = relationship('Caminhao', backref='Demanda')
+    caminhao = relationship('Caminhao', backref='demanda')
 
-    def __init__(self, remetente, enderecoRemetente, destinatario, enderecoDestinatario, valor, carga, pesoCarga, codcaminhao):
-        self.remetente = remetente,
+    def __init__(self, remetente, enderecoRemetente, destinatario, enderecoDestinatario, carga, pesoCarga, codcaminhao, valor):
+        self.remetente = remetente
         self.enderecoRemetente = enderecoRemetente
-        self.destinatario = destinatario,
-        self.enderecoDestinatario = enderecoDestinatario,
-        self.valor = valor,
-        self.carga = carga,
-        self.pesoCarga = pesoCarga,
-        self.codcaminhao = codcaminhao,
+        self.destinatario = destinatario
+        self.enderecoDestinatario = enderecoDestinatario
+        self.carga = carga
+        self.pesoCarga = pesoCarga
+        self.codcaminhao = codcaminhao
+        self.valor = valor

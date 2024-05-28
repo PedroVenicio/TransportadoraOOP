@@ -7,8 +7,8 @@ def adimin_controller():
             try:
                 data = request.get_json()
                 print(data)
-                Adimin = Adimin(data['nome'], data['login'], data['senha'])
-                db.session.add(Adimin)
+                adimin = Adimin(data['nome'], data['login'], data['senha'])
+                db.session.add(adimin)
                 db.session.commit()
                 return 'Adimin cadastrada com sucesso', 200
             except Exception as e:
@@ -16,7 +16,7 @@ def adimin_controller():
             
         elif request.method == 'GET':
             try:
-                data = Adimin.query.all()
+                data = adimin.query.all()
                 return render_template('adimin.html', data={'adimin': [adimin.to_dict() for adimin in data]})
 
             except Exception as e:
@@ -26,7 +26,7 @@ def adimin_controller():
             try:
                 data = request.get_json()
                 put_adimin_id = data['codigo']
-                put_adimin = Adimin.query.get(put_adimin_id)
+                put_adimin = adimin.query.get(put_adimin_id)
                 if put_adimin is None:
                     return {'error': 'adimin não encontrado'}, 404
                 put_adimin.tipo = data.get('tipo', put_adimin.tipo)
@@ -40,8 +40,8 @@ def adimin_controller():
         elif request.method == 'DELETE':
             try:
                 data = request.get_json()
-                delete_adimin_id = data['id']
-                delete_adimin = Adimin.query.get(delete_adimin_id)
+                delete_adimin_id = data['codigo']
+                delete_adimin = adimin.query.get(delete_adimin_id)
                 if delete_adimin is None:
                     return {'error': 'adimin não encontrado'}, 404
                 db.session.delete(delete_adimin)

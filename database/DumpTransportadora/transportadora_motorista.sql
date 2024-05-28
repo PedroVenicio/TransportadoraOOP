@@ -28,7 +28,7 @@ CREATE TABLE `motorista` (
   `nome` varchar(50) DEFAULT NULL,
   `cargahoraria` int DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `motorista` (
 
 LOCK TABLES `motorista` WRITE;
 /*!40000 ALTER TABLE `motorista` DISABLE KEYS */;
+INSERT INTO `motorista` VALUES (1,123,'belone',23);
 /*!40000 ALTER TABLE `motorista` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-26  0:02:55
+-- Dump completed on 2024-05-28  0:10:31

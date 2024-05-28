@@ -16,6 +16,6 @@ class Adimin(db.Model):
     Senha = db.Column(db.String(100))
 
     def __init__(self, nome, login, senha):
-        self.nome = nome,
-        self.login = login,
-        self.senha = senha,
+        self.nome = nome
+        self.login = login
+        self.senha = senha

@@ -7,8 +7,8 @@ def motorista_controller():
             try:
                 data = request.get_json()
                 print(data)
-                Motorista = Motorista(data['nome'], data['email'], data['cargo_id'])
-                db.session.add(Motorista)
+                motorista = Motorista(data['cpf'], data['nome'], data['cargahoraria'])
+                db.session.add(motorista)
                 db.session.commit()
                 return 'motorista cadastrado com sucesso', 200
             except Exception as e:
@@ -16,7 +16,7 @@ def motorista_controller():
             
         elif request.method == 'GET':
             try:
-                data = Motorista.query.all()
+                data = motorista.query.all()
                 return render_template('motorista.html', data={'motorista': [motorista.to_dict() for motorista in data]})
 
             except Exception as e:
@@ -26,7 +26,7 @@ def motorista_controller():
             try:
                 data = request.get_json()
                 put_motorista_id = data['codigo']
-                put_motorista = Motorista.query.get(put_motorista_id)
+                put_motorista = motorista.query.get(put_motorista_id)
                 if put_motorista is None:
                     return {'error': 'motorista não encontrado'}, 404
                 put_motorista.tipo = data.get('tipo', put_motorista.tipo)
@@ -40,8 +40,8 @@ def motorista_controller():
         elif request.method == 'DELETE':
             try:
                 data = request.get_json()
-                delete_motorista_id = data['id']
-                delete_motorista = Motorista.query.get(delete_motorista_id)
+                delete_motorista_id = data['codigo']
+                delete_motorista = motorista.query.get(delete_motorista_id)
                 if delete_motorista is None:
                     return {'error': 'motorista não encontrado'}, 404
                 db.session.delete(delete_motorista)
