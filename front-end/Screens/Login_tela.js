@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
       </View>
       <TouchableOpacity style={styles.cadstreaqdiv} onPress={() => navigation.navigate('Cadastro')}>
         <Text style={styles.cadastreaq} >Ainda não possui cadastro?</Text>
-        <Text style={styles.cadastreaq} >Clique aqui!!</Text>
+        <Text style={styles.cadastreaq} >Login!</Text>
       </TouchableOpacity>
     </View>
   );
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 20,
     backgroundColor: 'red',
   },
   txtbotom: {

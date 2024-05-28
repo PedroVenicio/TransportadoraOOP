@@ -1,39 +1,48 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { AntDesign, FontAwesome5, Ionicons } from '@expo/vector-icons';
 
 export default function Home({ navigation }) {
   return (
-    
+
     <View style={styles.container}>
-      <Text style={styles.TextTop}> clique nos icones para ir para a tela desejada</Text>
+      <Text style={styles.TextTop}> Clique nos ícones para realizar a ação desejada!</Text>
       <View style={styles.row}>
 
-        <View style={[styles.square, styles.red]}>
-          <Text style={styles.Text1}>Demanda!</Text>
-          <AntDesign name="inbox" size={120} marginTop={85} color="white" />
+        <View style={[styles.square1, styles.red]}>
+          <Text style={styles.Text1}>Realize sua demanda!</Text>
+          <View style={styles.viewBox}>
+            <Image
+              style={styles.box}
+              source={require('../ft/box.png')}
+            />
+          </View>
         </View>
 
 
-        <View style={[styles.square, styles.white]}>
-          <Text style={styles.Text2}>Pesquise seus coletas e entregas aqui</Text>
-          <FontAwesome5 name="search" marginTop={55} size={100} color="#607274" />
+        <View style={[styles.square2, styles.white]}>
+          <Text style={styles.Text2}>Pesquise suas demandas aqui</Text>
+          <View style={styles.viewBox}>
+            <Image
+              style={styles.lupa}
+              source={require('../ft/lupa.png')}
+            />
+          </View>
         </View>
-
       </View>
 
 
       <View style={styles.row}>
 
-        <View style={[styles.square, styles.white]}>
+        <View style={[styles.square3, styles.white]}>
           <Text style={styles.Text3}> Sobre a empresa:
-           horários de funcionametno, telfone, email e etc
+            horários de funcionametno, telfone, email e etc
             Funcionario do mês:</Text>
           <Ionicons name="business" marginTop={45} size={88} color="#607274" />
         </View>
 
 
-        <View style={[styles.square, styles.gray]}>
+        <View style={[styles.square4, styles.gray]}>
           <Text style={styles.Text4} >Configurações do aplicativo aqui!</Text>
           <AntDesign name="setting" marginTop={100} size={88} color="white" />
         </View>
@@ -54,15 +63,42 @@ const styles = StyleSheet.create({
   TextTop: {
     color: 'black',
     textAlign: "center",
-    fontSize: 36,
-    marginTop: 20,
-    marginBottom: 20,
+    fontSize: 30,
+    marginTop: 10,
+    marginBottom: 30,
   },
   row: {
     flexDirection: 'row',
     marginBottom: 10,
   },
-  square: {
+  square1: {
+    width: "45%", // Defina o tamanho padrão dos quadrados
+    aspectRatio: 0.65, // Mantém a proporção quadrada
+    borderRadius: 15,
+    borderWidth: 2,
+    marginHorizontal: 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  square2: {
+    width: "45%", // Defina o tamanho padrão dos quadrados
+    aspectRatio: 0.65, // Mantém a proporção quadrada
+    borderRadius: 15,
+    borderWidth: 2,
+    marginHorizontal: 5,
+    alignItems: "center",
+
+  },
+  square3: {
+    width: "45%", // Defina o tamanho padrão dos quadrados
+    aspectRatio: 0.65, // Mantém a proporção quadrada
+    borderRadius: 15,
+    borderWidth: 2,
+    marginHorizontal: 5,
+    alignItems: "center",
+
+  },
+  square4: {
     width: "45%", // Defina o tamanho padrão dos quadrados
     aspectRatio: 0.65, // Mantém a proporção quadrada
     borderRadius: 15,
@@ -73,15 +109,17 @@ const styles = StyleSheet.create({
   },
   Text1: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 26,
     marginTop: 12,
-
+    textAlign: "center",
+    marginBottom: 20,
   },
   Text2: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 22,
     marginTop: 12,
-
+    textAlign: "center",
+    marginTop: 30,
   },
   Text3: {
     color: 'black',
@@ -103,5 +141,19 @@ const styles = StyleSheet.create({
   },
   gray: {
     backgroundColor: '#607274',
+  },
+  viewBox: {
+    width: "50%",
+    height: "50%",
+  },
+  box: {
+    width: "100px",
+    height: "100px",
+    marginTop: 20,
+  },
+  lupa: {
+    width: "100px",
+    height: "100px",
+    marginTop: 46,
   },
 });
