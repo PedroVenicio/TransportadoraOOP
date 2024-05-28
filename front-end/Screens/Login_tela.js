@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import Cadastro from './Cadastrar_tela';
 
 export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
@@ -16,7 +19,11 @@ export default function Login({ navigation }) {
       alert('Dados inválidos');
     }
   }
-
+  const Stack = createStackNavigator();
+  <Stack.Navigator>
+    <Stack.Screen name="login" component={Login} />
+    <Stack.Screen name="Cadastro" component={Cadastro} />
+  </Stack.Navigator>
   return (
     <View style={styles.container}>
       <View style={styles.img}>
@@ -29,7 +36,7 @@ export default function Login({ navigation }) {
       <Text style={styles.txt1}>transportadora Maverik!</Text>
       <View style={styles.form}>
         <View style={styles.inputContainer}>
-        <Feather name="user" size={24} color="gray" />
+          <Feather name="user" size={24} color="red" />
           <TextInput
             style={styles.input}
             placeholder="Username: "
@@ -39,7 +46,7 @@ export default function Login({ navigation }) {
           />
         </View>
         <View style={styles.inputContainer}>
-          <FontAwesome name="lock" size={24} color="gray" style={styles.icon} />
+          <FontAwesome name="lock" size={24} color="red" style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Senha: "
@@ -55,7 +62,10 @@ export default function Login({ navigation }) {
           <Text style={styles.txtbotom}>login</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.errosenha}>esqueceu a senha?</Text>
+      <TouchableOpacity style={styles.cadstreaqdiv} onPress={() => navigation.navigate('Cadastro')}>
+        <Text style={styles.cadastreaq} >Ainda não possui cadastro?</Text>
+        <Text style={styles.cadastreaq} >Clique aqui!!</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -63,6 +73,7 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
     padding: 10,
     backgroundColor: 'white',
@@ -100,24 +111,28 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   botom: {
-    width: 100,
-    height: 30,
+    width: 160,
+    height: 43,
     backgroundColor: 'white',
-    borderRadius: 8,
+    borderRadius: 16,
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
     marginTop: 10,
+    backgroundColor: 'red',
   },
   txtbotom: {
     fontSize: 20,
-    color: 'gray',
+    color: 'white',
   },
-  errosenha: {
+  cadstreaqdiv: {
+    alignItems: "center",
+  },
+  cadastreaq: {
     marginTop: 10,
     fontSize: 15,
-    color: 'red',
+    color: 'blue',
   },
   form: {
     width: '100%',

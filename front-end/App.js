@@ -8,6 +8,7 @@ import Login from './Screens/Login_tela';
 import Home from './Screens/Home_tela';
 import Carro from './Screens/Carrinho_tela';
 import Pagamentos from './Screens/Pagamento_tela';
+import Cadastro from './Screens/Cadastrar_tela';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
@@ -47,6 +48,7 @@ export default function Stack() {
     <NavigationContainer>
         <Stack.Navigator> 
            <Stack.Screen name='Login' component={Login} />
+           <Stack.Screen name='Cadastro' component={Cadastro} />
           <Stack.Screen options={{headerShown: false}} name="Home" component={HomeTabs} />
         </Stack.Navigator>
     </NavigationContainer>
