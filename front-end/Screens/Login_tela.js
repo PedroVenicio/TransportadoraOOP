@@ -63,8 +63,7 @@ export default function Login({ navigation }) {
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.cadstreaqdiv} onPress={() => navigation.navigate('Cadastro')}>
-        <Text style={styles.cadastreaq} >Ainda não possui cadastro?</Text>
-        <Text style={styles.cadastreaq} >Login!</Text>
+        <Text style={styles.cadastreaq} >Sing up!</Text>
       </TouchableOpacity>
     </View>
   );
