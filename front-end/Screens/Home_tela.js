@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
 
         <View style={[styles.square2, styles.white]}>
           <Text style={styles.Text2}>Pesquise suas demandas aqui</Text>
-          <View style={styles.viewBox}>
+          <View style={styles.viewLupa}>
             <Image
               style={styles.lupa}
               source={require('../ft/lupa.png')}
@@ -117,9 +117,9 @@ const styles = StyleSheet.create({
   Text2: {
     color: 'black',
     fontSize: 22,
-    marginTop: 12,
+    marginTop: 32,
     textAlign: "center",
-    marginTop: 30,
+    marginBottom: 30,
   },
   Text3: {
     color: 'black',
@@ -143,17 +143,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#607274',
   },
   viewBox: {
-    width: "50%",
+    width: "80%",
+    height: "55%",
+  },
+  viewLupa: {
+    width: "77.5%",
     height: "50%",
   },
   box: {
-    width: "100px",
-    height: "100px",
-    marginTop: 20,
+    width: "100%",
+    height: "100%",
   },
   lupa: {
-    width: "100px",
-    height: "100px",
-    marginTop: 46,
+    width: "100%",
+    height: "100%",
   },
 });
