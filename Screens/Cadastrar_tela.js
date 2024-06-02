@@ -3,6 +3,7 @@ import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View } from 'reac
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import axios from 'axios';
 
 
 export default function Cadastro({ navigation }) {
@@ -10,15 +11,23 @@ export default function Cadastro({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  function Submit() {
-    if (username === 'dudu' && password === '1234') {
-      navigation.navigate('Home');
-      setUsername('');
-      setPassword('');
-    } else {
-      alert('Dados inválidos');
+
+  function postData() {
+    try{
+      axios.post('http://localhost:3000/usuario', 
+      {
+        nome: name,
+        login: username,
+        senha: password,
+      },
+      alert('Usuario cadastrado')
+      );
+    } 
+      catch (e) {
+      console.log(e);
     }
-  }
+}
+
   return (
     <View style={styles.container}>
       <View style={styles.img}>
@@ -35,8 +44,9 @@ export default function Cadastro({ navigation }) {
             style={styles.input}
             placeholder="Nome: "
             placeholderTextColor="gray"
+            id='name'
             value={name}
-            onChangeText={setName}
+            onChange={e =>setName(e.target.value)}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -45,8 +55,9 @@ export default function Cadastro({ navigation }) {
             style={styles.input}
             placeholder="Login: "
             placeholderTextColor="gray"
+            id='username'
             value={username}
-            onChangeText={setUsername}
+            onChange={e =>setUsername(e.target.value)}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -55,14 +66,15 @@ export default function Cadastro({ navigation }) {
             style={styles.input}
             placeholder="Senha: "
             placeholderTextColor="gray"
+            id='password'
             value={password}
-            onChangeText={setPassword}
+            onChange={e =>setPassword(e.target.value)}
             secureTextEntry
           />
         </View>
       </View>
       <View>
-        <TouchableOpacity style={styles.botom} onPress={Submit}>
+        <TouchableOpacity style={styles.botom} onPress={postData}>
           <Text style={styles.txtbotom}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
@@ -78,7 +90,8 @@ export default function Cadastro({ navigation }) {
         />
       </View>
 
-      <TouchableOpacity style={styles.cadstreaqdiv} onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity style={styles.cadstreaqdiv} 
+        onPress={() => navigation.navigate('Login')}>
         <Text style={styles.cadastreaq} >Sing in!</Text>
       </TouchableOpacity>
     </View>
