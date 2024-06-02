@@ -17,7 +17,8 @@ def usuario_controller():
         elif request.method == 'GET':
             try:
                 data = usuario.query.all()
-                return render_template('usuario.html', data={'usuario': [usuario.to_dict() for usuario in data]})
+                teste = {'usuarios': [usuario.to_dict() for usuario in data]}
+                return teste
 
             except Exception as e:
                 return 'Não foi possível buscar usuarios. Error: {}'.format(str(e)), 405
