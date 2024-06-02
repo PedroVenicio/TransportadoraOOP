@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import Cadastro from './Cadastrar_tela';
 
 export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
@@ -19,11 +16,6 @@ export default function Login({ navigation }) {
       alert('Dados inválidos');
     }
   }
-  const Stack = createStackNavigator();
-  <Stack.Navigator>
-    <Stack.Screen name="login" component={Login} />
-    <Stack.Screen name="Cadastro" component={Cadastro} />
-  </Stack.Navigator>
   return (
     <View style={styles.container}>
       <View style={styles.img}>

@@ -16,28 +16,34 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 function HomeTabs() {
   const Tab = createBottomTabNavigator();
-    return(
-      <Tab.Navigator 
-        initialRouteName='Login'
-        screenOptions={{
+  return (
+    <Tab.Navigator
+      initialRouteName='Login'
+      screenOptions={{
         tabBarActiveTintColor: "red",
         tabBarActiveBackgroundColor: "transparent",
         tabBarInactiveBackgroundColor: "transparent",
         tabBarInactiveTintColor: "grey",
-        headerStyle: {backgroundColor: "red"},
+        headerStyle: { backgroundColor: "red" },
         headerTintColor: "white",
         headerTitleAlign: "left",
       }}>
-        
-        <Tab.Screen name='Home' component={Home} options={{tabBarLabel: 'Home',
-          tabBarIcon:({color})  => (<Fontisto name="home" size={30} color={color} />)}}/>
-          
-        <Tab.Screen name='Veículos' component={Carro} options={{tabBarLabel: 'Veículos',
-          tabBarIcon:({color})  => (<FontAwesome name="bus" size={28} color={color}/>)}}/>
 
-        <Tab.Screen name='Pagamento' component={Pagamentos} options={{tabBarLabel: 'Pagamento',
-          tabBarIcon:({color})  => (<MaterialIcons name="attach-money" size={30} color={color} />)}}/>
-      </Tab.Navigator>
+      <Tab.Screen name='Home' component={Home} options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ color }) => (<Fontisto name="home" size={30} color={color} />)
+      }} />
+
+      <Tab.Screen name='Veículos' component={Carro} options={{
+        tabBarLabel: 'Veículos',
+        tabBarIcon: ({ color }) => (<FontAwesome name="bus" size={28} color={color} />)
+      }} />
+
+      <Tab.Screen name='Pagamento' component={Pagamentos} options={{
+        tabBarLabel: 'Pagamento',
+        tabBarIcon: ({ color }) => (<MaterialIcons name="attach-money" size={30} color={color} />)
+      }} />
+    </Tab.Navigator>
   )
 }
 
@@ -46,15 +52,15 @@ export default function Stack() {
 
   return (
     <NavigationContainer>
-        <Stack.Navigator> 
-           <Stack.Screen name='Login' component={Login} />
-           <Stack.Screen name='Cadastro' component={Cadastro} />
-          <Stack.Screen options={{headerShown: false}} name="Home" component={HomeTabs} />
-        </Stack.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen options ={{ headerShown:false }} name='Login' component={Login} />
+        <Stack.Screen options ={{ headerShown:false }} name='Cadastro' component={Cadastro} />
+        <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeTabs} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  
+
 });
