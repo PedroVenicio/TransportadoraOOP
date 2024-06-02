@@ -1,4 +1,3 @@
-
 import {View, StyleSheet, Image, Text, ScrollView} from 'react-native';
 
 export default function Carro({navigation}) {
