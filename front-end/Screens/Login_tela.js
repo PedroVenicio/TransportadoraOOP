@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imagem: {
-    height: 160,
-    width: 160,
+    height: 200,
+    width: 200,
     marginBottom: 10,
   },
   txt: {
@@ -101,24 +101,38 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     width: '70%',
     height: 45,
+    backgroundColor: 'white', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
+    shadowOpacity: 0.25,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,  // Para Android, adiciona elevação
   },
   icon: {
     marginRight: 10,
   },
   input: {
     flex: 1,
+    paddingHorizontal: 10,
   },
   botom: {
     width: 160,
     height: 43,
     backgroundColor: 'white',
     borderRadius: 16,
-    borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
     marginTop: 20,
     backgroundColor: 'red',
+    backgroundColor: 'red', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 6 },  // Deslocamento da sombra
+    shadowOpacity: 0.75,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,
+    marginBottom: "8%",
+    marginTop: "6%",
   },
   txtbotom: {
     fontSize: 20,
