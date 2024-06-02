@@ -20,11 +20,16 @@ export default function Cadastro({ navigation }) {
         login: username,
         senha: password,
       },
-      alert('Usuario cadastrado')
+      alert('Usuario cadastrado'),
+      setUsername(''),
+      setName(''),
+      setPassword(''),
+      navigation.navigate('Login')
       );
     } 
       catch (e) {
       console.log(e);
+      alert('Erro ao cadastrar')
     }
 }
 
