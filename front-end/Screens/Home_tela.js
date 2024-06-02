@@ -6,7 +6,8 @@ export default function Home({ navigation }) {
   return (
 
     <View style={styles.container}>
-      <Text style={styles.TextTop}> Clique nos ícones para realizar a ação desejada!</Text>
+      <Text style={styles.TextTop1}> Clique nos ícones </Text>
+      <Text style={styles.TextTop2}>e realizar a ação!</Text>
       <View style={styles.row}>
 
         <View style={[styles.square1, styles.red]}>
@@ -60,12 +61,19 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
   },
-  TextTop: {
+  TextTop1: {
     color: 'black',
     textAlign: "center",
     fontSize: 30,
-    marginTop: 10,
-    marginBottom: 30,
+    marginTop: -10,
+    marginLeft: -30,
+  },
+  TextTop2: {
+    color: 'black',
+    textAlign: "center",
+    fontSize: 30,
+    marginLeft: 25,
+    marginBottom: 20,
   },
   row: {
     flexDirection: 'row',

@@ -20,9 +20,9 @@ function HomeTabs() {
       <Tab.Navigator 
         initialRouteName='Login'
         screenOptions={{
-        tabBarActiveTintColor: "white",
-        tabBarActiveBackgroundColor: "red",
-        tabBarInactiveBackgroundColor: "red",
+        tabBarActiveTintColor: "red",
+        tabBarActiveBackgroundColor: "transparent",
+        tabBarInactiveBackgroundColor: "transparent",
         tabBarInactiveTintColor: "grey",
         headerStyle: {backgroundColor: "red"},
         headerTintColor: "white",
@@ -30,13 +30,13 @@ function HomeTabs() {
       }}>
         
         <Tab.Screen name='Home' component={Home} options={{tabBarLabel: 'Home',
-          tabBarIcon:({color, size})  => (<Fontisto name="home" size={30} color={color} />)}}/>
+          tabBarIcon:({color})  => (<Fontisto name="home" size={30} color={color} />)}}/>
           
         <Tab.Screen name='Veículos' component={Carro} options={{tabBarLabel: 'Veículos',
-          tabBarIcon:({color, size})  => (<FontAwesome name="bus" size={28} color={color}/>)}}/>
+          tabBarIcon:({color})  => (<FontAwesome name="bus" size={28} color={color}/>)}}/>
 
         <Tab.Screen name='Pagamento' component={Pagamentos} options={{tabBarLabel: 'Pagamento',
-          tabBarIcon:({color, size})  => (<MaterialIcons name="attach-money" size={30} color={color} />)}}/>
+          tabBarIcon:({color})  => (<MaterialIcons name="attach-money" size={30} color={color} />)}}/>
       </Tab.Navigator>
   )
 }
