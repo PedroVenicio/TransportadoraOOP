@@ -56,6 +56,7 @@ export default function Stack() {
         <Stack.Screen options ={{ headerShown:false }} name='Login' component={Login} />
         <Stack.Screen options ={{ headerShown:false }} name='Cadastro' component={Cadastro} />
         <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeTabs} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
 
 export default function Home({ navigation }) {
   return (
@@ -36,16 +35,24 @@ export default function Home({ navigation }) {
       <View style={styles.row}>
 
         <View style={[styles.square3, styles.white]}>
-          <Text style={styles.Text3}> Sobre a empresa:
-            horários de funcionametno, telfone, email e etc
-            Funcionario do mês:</Text>
-          <Ionicons name="business" marginTop={45} size={88} color="#607274" />
+          <Text style={styles.Text3}> Suporte</Text>
+          <View style={styles.viewSuport}>
+            <Image
+              style={styles.Suport}
+              source={require('../ft/Suport.png')}
+            />
+          </View>
         </View>
-
+       
 
         <View style={[styles.square4, styles.gray]}>
-          <Text style={styles.Text4} >Configurações do aplicativo aqui!</Text>
-          <AntDesign name="setting" marginTop={100} size={88} color="white" />
+          <Text style={styles.Text4} >Configs do aplicativo!</Text>
+          <View style={styles.viewSettings}>
+            <Image
+              style={styles.Settings}
+              source={require('../ft/Settings.png')}
+            />
+          </View>
         </View>
 
       </View>
@@ -83,37 +90,54 @@ const styles = StyleSheet.create({
     width: "45%", // Defina o tamanho padrão dos quadrados
     aspectRatio: 0.65, // Mantém a proporção quadrada
     borderRadius: 15,
-    borderWidth: 2,
     marginHorizontal: 5,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: 'white', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
+    shadowOpacity: 1.25,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,  // Para Android, adiciona elevação
   },
   square2: {
     width: "45%", // Defina o tamanho padrão dos quadrados
     aspectRatio: 0.65, // Mantém a proporção quadrada
     borderRadius: 15,
-    borderWidth: 2,
     marginHorizontal: 5,
     alignItems: "center",
-
+    backgroundColor: 'white', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
+    shadowOpacity: 1.25,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,  // Para Android, adiciona elevação
   },
   square3: {
     width: "45%", // Defina o tamanho padrão dos quadrados
     aspectRatio: 0.65, // Mantém a proporção quadrada
     borderRadius: 15,
-    borderWidth: 2,
     marginHorizontal: 5,
     alignItems: "center",
-
+    backgroundColor: 'white', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
+    shadowOpacity: 1.25,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,  // Para Android, adiciona elevação
   },
   square4: {
     width: "45%", // Defina o tamanho padrão dos quadrados
     aspectRatio: 0.65, // Mantém a proporção quadrada
     borderRadius: 15,
-    borderWidth: 2,
     marginHorizontal: 5,
     alignItems: "center",
-
+    backgroundColor: 'white', // Para garantir que a sombra seja visível
+    shadowColor: 'gray',  // Cor da sombra
+    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
+    shadowOpacity: 2.25,  // Opacidade da sombra
+    shadowRadius: 3.84,  // Raio da sombra
+    elevation: 5,  // Para Android, adiciona elevação
   },
   Text1: {
     color: 'white',
@@ -132,13 +156,15 @@ const styles = StyleSheet.create({
   Text3: {
     color: 'black',
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 34,
     marginTop: 20,
+    marginBottom: 55,
   },
   Text4: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 25,
     marginTop: 20,
+    marginBottom: 40,
 
   },
   red: {
@@ -158,11 +184,27 @@ const styles = StyleSheet.create({
     width: "77.5%",
     height: "50%",
   },
+  viewSuport: {
+    width: "77.5%",
+    height: "50%",
+  },
+  viewSettings: {
+    width: "77.5%",
+    height: "50%",
+  },
   box: {
     width: "100%",
     height: "100%",
   },
   lupa: {
+    width: "100%",
+    height: "100%",
+  },
+  Suport: {
+    width: "100%",
+    height: "100%",
+  },
+  Settings: {
     width: "100%",
     height: "100%",
   },
