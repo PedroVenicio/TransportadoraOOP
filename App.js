@@ -26,8 +26,8 @@ function HomeTabs() {
         tabBarInactiveBackgroundColor: "transparent",
         tabBarInactiveTintColor: "grey",
         headerStyle: { backgroundColor: "red" },
-        headerTintColor: "white",
-        headerTitleAlign: "left",
+        headerTitle: ' '
+       
       }}>
 
       <Tab.Screen name='Home' component={Home} options={{
@@ -49,11 +49,12 @@ export default function Stack() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
+        
             headerStyle: { backgroundColor: "transparent" },
             headerTintColor: "red",//não sei como tirar nome "demanda" e "home" na home
             headerTitleAlign: "center",}}>
         <Stack.Screen options={{ headerShown: false }} name='Login' component={Login} />
-        <Stack.Screen options={{ headerShown: true }} name='Demanda' component={Demanda} />
+        <Stack.Screen options={{ headerShown: true, headerTitle:' ' }} name='Demanda' component={Demanda} />
         <Stack.Screen options={{ headerShown: true }} name='Pesquisa' component={Pesquisa} />
         <Stack.Screen options={{ headerShown: true }} name='Suporte' component={Suporte} />
         <Stack.Screen options={{ headerShown: true }} name='Configs' component={Configs} />

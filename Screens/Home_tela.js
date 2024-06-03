@@ -12,7 +12,7 @@ export default function Home({ navigation }) {
         <View style={[styles.square1, styles.red]}>
           <Text style={styles.Text1}>Realize sua demanda!</Text>
             <View style={styles.viewBox} >
-            <TouchableOpacity onPress={() => navigation.navigate('Demanda')}>
+            <TouchableOpacity style={styles.botaoBox} onPress={() => navigation.navigate('Demanda')}>
               <Image
                 style={styles.box}
                 source={require('../ft/box.png')}
@@ -25,12 +25,12 @@ export default function Home({ navigation }) {
         <View style={[styles.square2, styles.white]}>
           <Text style={styles.Text2}>Pesquise suas demandas aqui</Text>
           <View style={styles.viewLupa}>
-          <TouchableOpacity onPress={() => navigation.navigate('Pesquisa')}>
-            <Image
-              style={styles.lupa}
-              source={require('../ft/lupa.png')}
-            />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Pesquisa')}>
+              <Image
+                style={styles.lupa}
+                source={require('../ft/lupa.png')}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
   viewLupa: {
     width: "77.5%",
     height: "50%",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   viewSuport: {
     width: "77.5%",
@@ -201,19 +203,19 @@ const styles = StyleSheet.create({
     height: "50%",
   },
   box: {
-    width: "100%",
-    height: "100%",
+    width: 150,
+    height: 150,
   },
   lupa: {
-    width: "100%",
-    height: "100%",
+    width: 150,
+    height: 150,
   },
   Suport: {
-    width: "100%",
-    height: "100%",
+    width: 150,
+    height: 150,
   },
   Settings: {
-    width: "100%",
-    height: "100%",
+    width: 150,
+    height: 150,
   },
 });
