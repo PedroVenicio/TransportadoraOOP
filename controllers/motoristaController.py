@@ -16,8 +16,9 @@ def motorista_controller():
             
         elif request.method == 'GET':
             try:
-                data = motorista.query.all()
-                return render_template('motorista.html', data={'motorista': [motorista.to_dict() for motorista in data]})
+                data = Motorista.query.all()
+                teste = {'motoristas': [motorista.to_dict() for motorista in data]}
+                return teste
 
             except Exception as e:
                 return 'Não foi possível buscar motoristas. Error: {}'.format(str(e)), 405
@@ -26,12 +27,12 @@ def motorista_controller():
             try:
                 data = request.get_json()
                 put_motorista_id = data['codigo']
-                put_motorista = motorista.query.get(put_motorista_id)
+                put_motorista = Motorista.query.get(put_motorista_id)
                 if put_motorista is None:
                     return {'error': 'motorista não encontrado'}, 404
-                put_motorista.tipo = data.get('tipo', put_motorista.tipo)
-                put_motorista.valor = data.get('valor', put_motorista.valor)
-                print(put_motorista.tipo, put_motorista.valor)
+                put_motorista.cpf = data.get('cpf', put_motorista.cpf)
+                put_motorista.nome = data.get('nome', put_motorista.nome)
+                put_motorista.cargahoraria = data.get('cargahoraria', put_motorista.cargahoraria)
                 db.session.commit()
                 return 'motorista atualizado com sucesso', 200
             except Exception as e:
@@ -41,7 +42,7 @@ def motorista_controller():
             try:
                 data = request.get_json()
                 delete_motorista_id = data['codigo']
-                delete_motorista = motorista.query.get(delete_motorista_id)
+                delete_motorista = Motorista.query.get(delete_motorista_id)
                 if delete_motorista is None:
                     return {'error': 'motorista não encontrado'}, 404
                 db.session.delete(delete_motorista)

@@ -13,7 +13,7 @@ class Adimin(db.Model):
     codigo = db.Column(db.Integer, primary_key = True, nullable=False, unique=True) #propriedades da coluna id
     nome = db.Column(db.String(100))
     login = db.Column(db.String(100))
-    Senha = db.Column(db.String(100))
+    senha = db.Column(db.String(100))
 
     def __init__(self, nome, login, senha):
         self.nome = nome

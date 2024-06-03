@@ -16,8 +16,9 @@ def demanda_controller():
             
         elif request.method == 'GET':
             try:
-                data = demanda.query.all()
-                return render_template('demanda.html', data={'demanda': [demanda.to_dict() for demanda in data]})
+                data = Demanda.query.all()
+                teste = {'demandas': [demanda.to_dict() for demanda in data]}
+                return teste
 
             except Exception as e:
                 return 'Não foi possível buscar demandas. Error: {}'.format(str(e)), 405
@@ -26,12 +27,17 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 put_demanda_id = data['codigo']
-                put_demanda = demanda.query.get(put_demanda_id)
+                put_demanda = Demanda.query.get(put_demanda_id)
                 if put_demanda is None:
                     return {'error': 'demanda não encontrado'}, 404
-                put_demanda.tipo = data.get('tipo', put_demanda.tipo)
+                put_demanda.remetente = data.get('remetente', put_demanda.remetente)
+                put_demanda.enderecoRemetente = data.get('enderecoRemetente', put_demanda.enderecoRemetente)
+                put_demanda.destinatario = data.get('destinatario', put_demanda.destinatario)
+                put_demanda.enderecoDestinatario = data.get('enderecoDestinatario', put_demanda.enderecoDestinatario)
+                put_demanda.carga = data.get('carga', put_demanda.carga)
+                put_demanda.pesoCarga = data.get('pesoCarga', put_demanda.pesoCarga)
+                put_demanda.codcaminhao = data.get('codcaminhao', put_demanda.codcaminhao)
                 put_demanda.valor = data.get('valor', put_demanda.valor)
-                print(put_demanda.tipo, put_demanda.valor)
                 db.session.commit()
                 return 'demanda atualizado com sucesso', 200
             except Exception as e:
@@ -41,7 +47,7 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 delete_demanda_id = data['codigo']
-                delete_demanda = demanda.query.get(delete_demanda_id)
+                delete_demanda = Demanda.query.get(delete_demanda_id)
                 if delete_demanda is None:
                     return {'error': 'demanda não encontrado'}, 404
                 db.session.delete(delete_demanda)

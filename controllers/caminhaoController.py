@@ -16,8 +16,9 @@ def caminhao_controller():
             
         elif request.method == 'GET':
             try:
-                data = caminhao.query.all()
-                return render_template('carga.html', data={'caminhao': [caminhao.to_dict() for caminhao in data]})
+                data = Caminhao.query.all()
+                teste = {'caminhoes': [caminhao.to_dict() for caminhao in data]}
+                return teste
 
             except Exception as e:
                 return 'Não foi possível buscar cargas. Error: {}'.format(str(e)), 405
@@ -26,12 +27,13 @@ def caminhao_controller():
             try:
                 data = request.get_json()
                 put_caminhao_id = data['codigo']
-                put_caminhao = caminhao.query.get(put_caminhao_id)
+                put_caminhao = Caminhao.query.get(put_caminhao_id)
                 if put_caminhao is None:
                     return {'error': 'caminhao não encontrado'}, 404
-                put_caminhao.tipo = data.get('tipo', put_caminhao.tipo)
-                put_caminhao.valor = data.get('valor', put_caminhao.valor)
-                print(put_caminhao.tipo, put_caminhao.valor)
+                put_caminhao.marca = data.get('marca', put_caminhao.marca)
+                put_caminhao.kmrodados = data.get('kmrodados', put_caminhao.kmrodados)
+                put_caminhao.codmotorista = data.get('codmotorista', put_caminhao.codmotorista)
+                put_caminhao.capacidade = data.get('capacidade', put_caminhao.capacidade)
                 db.session.commit()
                 return 'caminhao atualizado com sucesso', 200
             except Exception as e:
@@ -41,7 +43,7 @@ def caminhao_controller():
             try:
                 data = request.get_json()
                 delete_caminhao_id = data['codigo']
-                delete_caminhao = caminhao.query.get(delete_caminhao_id)
+                delete_caminhao = Caminhao.query.get(delete_caminhao_id)
                 if delete_caminhao is None:
                     return {'error': 'caminhao não encontrado'}, 404
                 db.session.delete(delete_caminhao)

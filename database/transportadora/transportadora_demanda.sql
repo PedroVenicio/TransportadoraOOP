@@ -16,28 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `adimin`
+-- Table structure for table `demanda`
 --
 
-DROP TABLE IF EXISTS `adimin`;
+DROP TABLE IF EXISTS `demanda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `adimin` (
+CREATE TABLE `demanda` (
   `codigo` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) DEFAULT NULL,
-  `login` varchar(50) DEFAULT NULL,
-  `senha` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `remetente` varchar(50) DEFAULT NULL,
+  `enderecoRemetente` varchar(50) DEFAULT NULL,
+  `destinatario` varchar(50) DEFAULT NULL,
+  `enderecoDestinatario` varchar(50) DEFAULT NULL,
+  `carga` varchar(50) DEFAULT NULL,
+  `pesoCarga` float(8,2) DEFAULT NULL,
+  `codcaminhao` int DEFAULT NULL,
+  `valor` float(8,2) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `codcaminhao` (`codcaminhao`),
+  CONSTRAINT `demanda_ibfk_1` FOREIGN KEY (`codcaminhao`) REFERENCES `caminhao` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `adimin`
+-- Dumping data for table `demanda`
 --
 
-LOCK TABLES `adimin` WRITE;
-/*!40000 ALTER TABLE `adimin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `adimin` ENABLE KEYS */;
+LOCK TABLES `demanda` WRITE;
+/*!40000 ALTER TABLE `demanda` DISABLE KEYS */;
+INSERT INTO `demanda` VALUES (1,'mercado livre','Rua silicio 12','satc','Rua Pascoal 15','Banco de supino',999.00,1,1234.00),(3,'shopee','coreia do norte','mariane melo','casa dela','fralda',2.00,4,10.00);
+/*!40000 ALTER TABLE `demanda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-28  0:10:32
+-- Dump completed on 2024-06-02 22:26:23

@@ -16,8 +16,9 @@ def adimin_controller():
             
         elif request.method == 'GET':
             try:
-                data = adimin.query.all()
-                return render_template('adimin.html', data={'adimin': [adimin.to_dict() for adimin in data]})
+                data = Adimin.query.all()
+                teste = {'admins': [adimin.to_dict() for adimin in data]}
+                return teste
 
             except Exception as e:
                 return 'Não foi possível buscar adimins. Error: {}'.format(str(e)), 405
@@ -26,12 +27,12 @@ def adimin_controller():
             try:
                 data = request.get_json()
                 put_adimin_id = data['codigo']
-                put_adimin = adimin.query.get(put_adimin_id)
+                put_adimin = Adimin.query.get(put_adimin_id)
                 if put_adimin is None:
                     return {'error': 'adimin não encontrado'}, 404
-                put_adimin.tipo = data.get('tipo', put_adimin.tipo)
-                put_adimin.valor = data.get('valor', put_adimin.valor)
-                print(put_adimin.tipo, put_adimin.valor)
+                put_adimin.nome = data.get('nome', put_adimin.nome)
+                put_adimin.login = data.get('login', put_adimin.login)
+                put_adimin.senha = data.get('senha', put_adimin.senha)
                 db.session.commit()
                 return 'adimin atualizado com sucesso', 200
             except Exception as e:
@@ -41,7 +42,7 @@ def adimin_controller():
             try:
                 data = request.get_json()
                 delete_adimin_id = data['codigo']
-                delete_adimin = adimin.query.get(delete_adimin_id)
+                delete_adimin = Adimin.query.get(delete_adimin_id)
                 if delete_adimin is None:
                     return {'error': 'adimin não encontrado'}, 404
                 db.session.delete(delete_adimin)
