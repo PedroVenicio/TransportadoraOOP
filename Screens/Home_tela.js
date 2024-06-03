@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 export default function Home({ navigation }) {
   return (
@@ -11,22 +11,26 @@ export default function Home({ navigation }) {
 
         <View style={[styles.square1, styles.red]}>
           <Text style={styles.Text1}>Realize sua demanda!</Text>
-          <View style={styles.viewBox}>
-            <Image
-              style={styles.box}
-              source={require('../ft/box.png')}
-            />
-          </View>
+            <View style={styles.viewBox} >
+            <TouchableOpacity onPress={() => navigation.navigate('Demanda')}>
+              <Image
+                style={styles.box}
+                source={require('../ft/box.png')}
+              />
+              </TouchableOpacity>
+            </View>
         </View>
 
 
         <View style={[styles.square2, styles.white]}>
           <Text style={styles.Text2}>Pesquise suas demandas aqui</Text>
           <View style={styles.viewLupa}>
+          <TouchableOpacity onPress={() => navigation.navigate('Pesquisa')}>
             <Image
               style={styles.lupa}
               source={require('../ft/lupa.png')}
             />
+          </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -37,21 +41,25 @@ export default function Home({ navigation }) {
         <View style={[styles.square3, styles.white]}>
           <Text style={styles.Text3}> Suporte</Text>
           <View style={styles.viewSuport}>
+          <TouchableOpacity onPress={() => navigation.navigate('Suporte')}>
             <Image
               style={styles.Suport}
               source={require('../ft/Suport.png')}
             />
+            </TouchableOpacity>
           </View>
         </View>
-       
+
 
         <View style={[styles.square4, styles.gray]}>
           <Text style={styles.Text4} >Configs do aplicativo!</Text>
           <View style={styles.viewSettings}>
+          <TouchableOpacity onPress={() => navigation.navigate('Configs')}>
             <Image
               style={styles.Settings}
               source={require('../ft/Settings.png')}
             />
+             </TouchableOpacity>
           </View>
         </View>
 

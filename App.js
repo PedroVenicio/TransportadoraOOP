@@ -1,14 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, } from 'react-native';
-
 
 import Login from './Screens/Login_tela';
 import Home from './Screens/Home_tela';
 import Carro from './Screens/Carrinho_tela';
 import Pagamentos from './Screens/Pagamento_tela';
 import Cadastro from './Screens/Cadastrar_tela';
+import Demanda from './Screens/Demanda';
+import Pesquisa from './Screens/PesquisaDemanda';
+import Suporte from './Screens/Suporte';
+import Configs from './Screens/Configs';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
@@ -52,16 +54,19 @@ export default function Stack() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen options ={{ headerShown:false }} name='Login' component={Login} />
-        <Stack.Screen options ={{ headerShown:false }} name='Cadastro' component={Cadastro} />
+      <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: "transparent" },
+            headerTintColor: "red",//não sei como tirar nome "demanda" e "home" na home
+            headerTitleAlign: "center",}}>
+        <Stack.Screen options={{ headerShown: false }} name='Login' component={Login} />
+        <Stack.Screen options={{ headerShown: true }} name='Demanda' component={Demanda} />
+        <Stack.Screen options={{ headerShown: true }} name='Pesquisa' component={Pesquisa} />
+        <Stack.Screen options={{ headerShown: true }} name='Suporte' component={Suporte} />
+        <Stack.Screen options={{ headerShown: true }} name='Configs' component={Configs} />
+        <Stack.Screen options={{ headerShown: false }} name='Cadastro' component={Cadastro} />
         <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeTabs} />
-        
+
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
