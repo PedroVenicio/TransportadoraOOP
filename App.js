@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Login from './Screens/Login_tela';
 import Home from './Screens/Home_tela';
-import Carro from './Screens/Carrinho_tela';
 import Pagamentos from './Screens/Pagamento_tela';
 import Cadastro from './Screens/Cadastrar_tela';
 import Demanda from './Screens/Demanda';
@@ -34,11 +33,6 @@ function HomeTabs() {
       <Tab.Screen name='Home' component={Home} options={{
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (<Fontisto name="home" size={30} color={color} />)
-      }} />
-
-      <Tab.Screen name='Veículos' component={Carro} options={{
-        tabBarLabel: 'Veículos',
-        tabBarIcon: ({ color }) => (<FontAwesome name="bus" size={28} color={color} />)
       }} />
 
       <Tab.Screen name='Pagamento' component={Pagamentos} options={{
