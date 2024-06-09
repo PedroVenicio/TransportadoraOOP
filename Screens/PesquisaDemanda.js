@@ -1,9 +1,22 @@
 import React, { useState }  from 'react';
-import { View, StyleSheet, Text, TextInput, Image } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 
 export default function Pesquisa({ navigation }) {
 
-  const [serach, setSerach] = useState('');
+  const [search, setSearch] = useState('');
+
+  const [data, setData] = useState([]);
+
+    async function getDemanda() {
+      try{
+        const response = await axios.get('http://localhost:3000/demanda');
+        setData(response.data.demandas);
+        console.log(response.data)
+      } catch (e) {
+        console.log(e);
+      }
+    }
 
   return (
 
@@ -14,17 +27,38 @@ export default function Pesquisa({ navigation }) {
         style={styles.input}
         placeholder='Pesquise pelo código'
         placeholderTextColor="gray"
-        id='serach'
-        value={serach}
-        onChange={e => setSerach(e.target.value)}
+        id='search'
+        value={search}
+        onChange={e => setSearch(e.target.value)}
         />
         </View>
         <View style={[styles.square1, styles.red]}>
+          <TouchableOpacity
+          onPress={getDemanda}>
           <Image
             style={styles.lupa}
             source={require('../ft/lupa.png')}
           />
+          </TouchableOpacity>
         </View>
+      </View>
+      <View>
+        <Text>
+          Suas demandas
+        </Text>
+        {data.length <= 0 ? (
+          <Text>Pesquisando...</Text>
+        ) : (
+          data.map((demanda) => {
+            return(
+              <View key={demanda.carga}>
+                <Text>
+                  {demanda.carga}{''}
+                </Text>
+              </View>
+            );
+          })
+        )}
       </View> 
     </View>
   );
