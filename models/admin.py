@@ -1,6 +1,6 @@
 from database.db import db
 
-class Adimin(db.Model):
+class Admin(db.Model):
     def to_dict(self):
         
         return{

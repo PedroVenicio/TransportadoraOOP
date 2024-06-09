@@ -19,7 +19,6 @@ def usuario_controller():
                 data = Usuario.query.all()
                 teste = {'usuarios': [usuario.to_dict() for usuario in data]}
                 return teste
-
             except Exception as e:
                 return 'Não foi possível buscar usuarios. Error: {}'.format(str(e)), 405
 

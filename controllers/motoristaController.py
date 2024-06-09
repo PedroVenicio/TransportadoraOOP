@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import  request
 from models.motorista import Motorista
 from database.db import db
 

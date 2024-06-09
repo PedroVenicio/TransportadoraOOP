@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import request
 from models.caminhao import Caminhao
 from database.db import db
 
