@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Login from './Screens/Login_tela';
 import Home from './Screens/Home_tela';
-import Carro from './Screens/Carrinho_tela';
 import { Ionicons } from '@expo/vector-icons';
 
 

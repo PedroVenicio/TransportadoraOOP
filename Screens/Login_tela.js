@@ -10,7 +10,7 @@ export default function Login({ navigation }) {
 
   async function Submit() {
     /* const response = await axios.get('http://localhost:3000/usuario');
-    setData(response.data.usuario);
+    setData(response.data.usuarios);
 
     Response.map(response => () => {
       if (Response.map.login === username && Response.map.senha === password){
