@@ -186,12 +186,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: "10%",
-    marginBottom: "15px",
-    marginTop: "15px",
+    marginBottom: 15,
+    marginTop: 15,
   },
   iconCadastro: {
-    height: "100%",
-    width: "35%",
+    height: 150,
+    width: 90,
+    margin: 20,
     
   },
 });

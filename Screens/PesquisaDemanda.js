@@ -53,7 +53,7 @@ export default function Pesquisa({ navigation }) {
             return(
               <View key={demanda.carga}>
                 <Text>
-                  {demanda.carga}{''}
+                  {demanda.codigo} {demanda.carga} {demanda.valor} {demanda.remetente} {demanda.enderecoRemetente} {demanda.destinatario} {demanda.enderecoDestinatario}{''}
                 </Text>
               </View>
             );
