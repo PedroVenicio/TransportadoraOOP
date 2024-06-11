@@ -5,16 +5,22 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/adimin
+  url: http://localhost:3000/demanda
   body: json
   auth: none
 }
 
 body:json {
   {
-  "nome": "albertina",
-  "login": "tinaa",
-  "senha": "bilhetinho"
+  "remetente": "shoope",
+  "enderecoRemetente": "rua do silicio china",
+  "destinatario": "marine melo",
+  "enderecoDestinatario": "SATC",
+  "valor": 30,
+  "carga": "fralda",
+  "pesoCarga": 2,
+  "volumeCarga": 120,
+  "codcaminhao": 1 
   }
 }
 
