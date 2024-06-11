@@ -11,6 +11,43 @@ export default function Demanda({ navigation }) {
   const [volume, setVolume] = useState('');
   const [destinatario, setDestinatario] = useState('');
   const [enderecoDestinatario, setEnderecoDestinatario] = useState('');
+  
+  const CheckBox = ({options = [], onChange, multiple = false}) => {
+    const [selected, setSelected] = useState([]);
+
+    function toggle(id) {
+      let index = selected.findIndex(i => i === id);
+      let arrSelecteds = [...selected];
+      if (index != -1) {
+        arrSelecteds.splice(index, 1);
+      }
+      else{
+        multiple ? arrSelecteds.push(id) : (arrSelecteds = [id]);
+      }
+      setSelected(arrSelecteds);
+    }
+
+    useEffect(() => onChange(selected), [selected]);
+    return(
+      <View>
+        {options.map((op, index) => (
+
+          <Text>
+            
+            {op?.text}</Text>
+        ))}
+      </View>
+    )
+  }
+
+  //https://www.youtube.com/watch?v=ZEATUQRxBwc&t=17s
+
+  const CheckBoxPage = () => {
+    const option = [{text: 'A', id:1}, {text: 'B', id:2}, {text: 'C', id:3}, {text: 'D', id:4}, {text: 'E', id:5}];
+    return(
+      <CheckBox options={optionsindividual} onChange={op => alert(op)} />
+    )
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -100,7 +137,7 @@ export default function Demanda({ navigation }) {
           />
         </View>
         <View style={styles.minisquare}>
-
+          <CheckBox options={option} onChange={op => alert(op)} />
         </View>
           
         <View>
