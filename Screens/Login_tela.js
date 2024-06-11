@@ -7,31 +7,38 @@ import axios from 'axios';
 export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+  const [data, setData] = useState([]);
 
   async function Submit() {
-    /* const response = await axios.get('http://localhost:3000/usuario');
-    setData(response.data.usuarios);
-
-    Response.map(response => () => {
-      if (Response.map.login === username && Response.map.senha === password){
+    try {
+      const response = await axios.get('http://localhost:3000/usuario');
+      setData(response.data.usuarios);
+      console.log(response.data);
+  
+      console.log(data); // Verificar se os dados estão corretamente atualizados
+  
+      let userFound = false;
+      for (const usuario of response.data.usuarios) {
+        if (usuario.login === username && usuario.senha === password) {
+          userFound = true;
+          break;
+        }
+      }
+  
+      if (userFound) {
         navigation.navigate('Home');
         setUsername('');
         setPassword('');
+      } else {
+        alert('Dados inválidos');
       }
-      else{
-        alert('dados inválidos')
-      }
-    }) */ 
-    //tentativa de validação com banco falha, vejo melhor depois
-
-    if (username === 'dudu' && password === '1234') {
-      navigation.navigate('Home');
-      setUsername('');
-      setPassword('');
-    } else {
-      alert('Dados inválidos');
+    } catch (error) {
+      console.error('Erro ao obter dados de usuário:', error);
     }
   }
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.img}>
