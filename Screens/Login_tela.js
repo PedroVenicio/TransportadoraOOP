@@ -73,7 +73,7 @@ export default function Login({ navigation }) {
         </View>
       </View>
       <View>
-        <TouchableOpacity style={styles.botom} onPress={Submit}>
+        <TouchableOpacity style={styles.botom} onPress={() => Submit()}>
           <Text style={styles.txtbotom}>login</Text>
         </TouchableOpacity>
       </View>

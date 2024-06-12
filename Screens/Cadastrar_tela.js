@@ -13,23 +13,28 @@ export default function Cadastro({ navigation }) {
 
 
   function postData() {
-    try{
-      axios.post('http://localhost:3000/usuario', 
-      {
-        nome: name,
-        login: username,
-        senha: password,
-      },
-      alert('Usuario cadastrado'),
-      setUsername(''),
-      setName(''),
-      setPassword(''),
-      navigation.navigate('Login')
-      );
-    } 
-      catch (e) {
-      console.log(e);
-      alert('Erro ao cadastrar')
+    if (name, username, password !== ''){
+      try{
+        axios.post('http://localhost:3000/usuario', 
+        {
+          nome: name,
+          login: username,
+          senha: password,
+        },
+        alert('Usuario cadastrado'),
+        setUsername(''),
+        setName(''),
+        setPassword(''),
+        navigation.navigate('Login')
+        );
+      } 
+        catch (e) {
+        console.log(e);
+        alert('Erro ao cadastrar')
+      }
+    }
+    else{
+      alert('Insira os dados nos campos')
     }
 }
 
@@ -51,7 +56,7 @@ export default function Cadastro({ navigation }) {
             placeholderTextColor="gray"
             id='name'
             value={name}
-            onChange={e =>setName(e.target.value)}
+            onChangeText={setName}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -62,7 +67,7 @@ export default function Cadastro({ navigation }) {
             placeholderTextColor="gray"
             id='username'
             value={username}
-            onChange={e =>setUsername(e.target.value)}
+            onChangeText={setUsername}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -73,13 +78,13 @@ export default function Cadastro({ navigation }) {
             placeholderTextColor="gray"
             id='password'
             value={password}
-            onChange={e =>setPassword(e.target.value)}
+            onChangeText={setPassword}
             secureTextEntry
           />
         </View>
       </View>
       <View>
-        <TouchableOpacity style={styles.botom} onPress={postData}>
+        <TouchableOpacity style={styles.botom} onPress={() => postData()}>
           <Text style={styles.txtbotom}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
