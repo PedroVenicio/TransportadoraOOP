@@ -7,7 +7,7 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 print(data)
-                demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['codcaminhao'], data['valor'])
+                demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['volumeCarga'], data['codcaminhao'], data['valor'])
                 db.session.add(demanda)
                 db.session.commit()
                 return 'demanda cadastrada com sucesso', 200

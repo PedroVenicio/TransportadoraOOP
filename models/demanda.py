@@ -14,6 +14,7 @@ class Demanda(db.Model):
             'valor': self.valor,
             'carga': self.carga,
             'pesoCarga': self.pesoCarga,
+            'volumeCarga': self.volumeCarga,
             'codcaminhao': self.codcaminhao,
         }
     
@@ -24,17 +25,19 @@ class Demanda(db.Model):
     destinatario = db.Column(db.String(100))
     carga = db.Column(db.String(100))
     pesoCarga = db.Column(db.Float(100))
+    volumeCarga = db.Column(db.Float(100))
     codcaminhao = db.Column(ForeignKey('caminhao.codigo'))
     valor = db.Column(db.Float(100))
 
     caminhao = relationship('Caminhao', backref='demanda')
 
-    def __init__(self, remetente, enderecoRemetente, destinatario, enderecoDestinatario, carga, pesoCarga, codcaminhao, valor):
+    def __init__(self, remetente, enderecoRemetente, destinatario, enderecoDestinatario, carga, pesoCarga, volumeCarga, codcaminhao, valor):
         self.remetente = remetente
         self.enderecoRemetente = enderecoRemetente
         self.destinatario = destinatario
         self.enderecoDestinatario = enderecoDestinatario
         self.carga = carga
         self.pesoCarga = pesoCarga
+        self.volumeCarga = volumeCarga
         self.codcaminhao = codcaminhao
         self.valor = valor
