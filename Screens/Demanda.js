@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View, ScrollView } from 'react-native';
+import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View, ScrollView, Alert, Modal, Pressable } from 'react-native';
 import { Feather, Fontisto, MaterialIcons, FontAwesome5, Entypo } from '@expo/vector-icons';
+import { CheckBox } from 'react-native-elements';
+import axios from 'axios';
 
 export default function Demanda({ navigation }) {
   const [remetente, setRemetente] = useState('');
@@ -11,43 +13,48 @@ export default function Demanda({ navigation }) {
   const [volume, setVolume] = useState('');
   const [destinatario, setDestinatario] = useState('');
   const [enderecoDestinatario, setEnderecoDestinatario] = useState('');
-  
-  const CheckBox = ({options = [], onChange, multiple = false}) => {
-    const [selected, setSelected] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedMethod, setSelectedMethod] = useState(null);
 
-    function toggle(id) {
-      let index = selected.findIndex(i => i === id);
-      let arrSelecteds = [...selected];
-      if (index != -1) {
-        arrSelecteds.splice(index, 1);
+  const methods = ['A', 'B', 'C', 'D', 'E'];
+
+  function postData() {
+    if (remetente, enderecoRemetente, valorCargaSegurada, carga, pesoCarga, volume, destinatario, enderecoDestinatario !== ''){
+      try{
+        axios.post('http://localhost:3000/demanda', 
+        {
+          remetente: remetente,
+          enderecoRemetente: enderecoRemetente,
+          destinatario: destinatario,
+          enderecoDestinatario: enderecoDestinatario,
+          carga: carga,
+          pesoCarga: pesoCarga,
+          volumeCarga: volume,
+          codcaminhao: 1, 
+          valor: valorCargaSegurada,
+        },
+        alert('Demanda criada'),
+        setRemetente(''),
+        setEnderecoRemetente(''),
+        setValorCargaSegurada(''),
+        setCarga(''),
+        setPesoCarga(''),
+        setVolume(''),
+        setDestinatario(''),
+        setEnderecoDestinatario(''),
+
+        navigation.navigate('Home')
+        );
+      } 
+        catch (e) {
+        console.log(e);
+        alert('Erro ao criar demanda')
       }
-      else{
-        multiple ? arrSelecteds.push(id) : (arrSelecteds = [id]);
-      }
-      setSelected(arrSelecteds);
     }
-
-    useEffect(() => onChange(selected), [selected]);
-    return(
-      <View>
-        {options.map((op, index) => (
-
-          <Text>
-            
-            {op?.text}</Text>
-        ))}
-      </View>
-    )
-  }
-
-  //https://www.youtube.com/watch?v=ZEATUQRxBwc&t=17s
-
-  const CheckBoxPage = () => {
-    const option = [{text: 'A', id:1}, {text: 'B', id:2}, {text: 'C', id:3}, {text: 'D', id:4}, {text: 'E', id:5}];
-    return(
-      <CheckBox options={optionsindividual} onChange={op => alert(op)} />
-    )
-  }
+    else{
+      alert('Insira os dados nos campos')
+    }
+}
 
   return (
     <ScrollView style={styles.container}>
@@ -55,11 +62,11 @@ export default function Demanda({ navigation }) {
         <View style={styles.viewBox}>
           <Image
             style={styles.box}
-            source={require('../ft/box.png')}>
-          </Image>
+            source={require('../ft/box.png')}
+          />
         </View>
         <View style={styles.viewTxt1}>
-          <Text style={styles.txt1}> Crie sua demanda!</Text>
+          <Text style={styles.txt1}>Crie sua demanda!</Text>
         </View>
       </View>
 
@@ -127,7 +134,7 @@ export default function Demanda({ navigation }) {
           </View>
         </View>
         <View style={styles.inputContainer}>
-        <Feather name="user" size={24} color="red" />
+          <Feather name="user" size={24} color="red" />
           <TextInput
             style={styles.input}
             placeholder="Destinatário : "
@@ -137,29 +144,107 @@ export default function Demanda({ navigation }) {
           />
         </View>
         <View style={styles.minisquare}>
-          <CheckBox options={option} onChange={op => alert(op)} />
+          <View style={styles.centeredView}>
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                Alert.alert('Modal has been closed.');
+                setModalVisible(!modalVisible);
+              }}>
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <View style={styles.textGeral}>
+
+                    <Text style={styles.modalTextTT}>COLETAS E ENTREGAS!</Text>
+
+                    <View>
+                      <Text style={styles.modalTextT}>COLETA A :</Text>
+                      <Text style={styles.modalText}>Remetente leva na transportadora</Text>
+                      <Text style={styles.modalTextT}>COLETA B :</Text>
+                      <Text style={styles.modalText}>Transposrtadora busca no endereço do remetente</Text>
+                      <Text style={styles.modalTextT}>ENTREGA A : </Text>
+                      <Text style={styles.modalText}>Destinatário pega na transpotadora</Text>
+                      <Text style={styles.modalTextT}>ENTREGA B : </Text>
+                      <Text style={styles.modalText}>Transportadora leva ao endereço do destinatário</Text>
+
+                      <View style={styles.modalTextTT}>
+                        <Text style={styles.modalTextTT}>MÉTODOS</Text>
+                      </View>
+
+                      <Text style={styles.modalTextT2}>A :</Text>
+                      <Text style={styles.modalText}>Coleta B e Entrega B</Text>
+                      <Text style={styles.modalTextT2}>B :</Text>
+                      <Text style={styles.modalText}>Coleta B e Entrega A</Text>
+                      <Text style={styles.modalTextT2}>C :</Text>
+                      <Text style={styles.modalText}>Coleta A e Entrega B</Text>
+                      <Text style={styles.modalTextT2}>D :</Text>
+                      <Text style={styles.modalText}>Coleta A e Entrega A</Text>
+                      <Text style={styles.modalTextT2}>E :</Text>
+                      <Text style={styles.modalText}>Coleta B e Entrega B</Text>
+                      <Text style={styles.modalText2}>*O método "E" não passa pela transportadora e para ser realizado deve gerar o documento de expedição.</Text>
+                    </View>
+                  </View>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(!modalVisible)}>
+                    <Text style={styles.textStyle}>Voltar para o pedido</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </Modal>
+            <Pressable
+              style={[styles.button, styles.buttonOpen]}
+              onPress={() => setModalVisible(true)}>
+              <Text style={styles.textStyle}>Ver métodos de transporte</Text>
+            </Pressable>
+            {methods.map((method, index) => (
+              <View key={index} style={[styles.checkBox, index === 0 && styles.checkBoxI]}>
+                <CheckBox style={styles.checkBox}
+                  title={`Método "${method}"`}
+                  checked={selectedMethod === method}
+                  onPress={() => setSelectedMethod(method)}
+                  checkedIcon="dot-circle-o"
+                  uncheckedIcon="circle-o"
+                  checkedColor="red"
+                />
+              </View>
+            ))}
+          </View>
         </View>
-          
+        <View style={styles.inputContainer}>
+          <Fontisto name="map-marker-alt" size={24} color="red" />
+          <TextInput
+            style={styles.input}
+            placeholder="Endereço do destinatário: "
+            placeholderTextColor="gray"
+            value={enderecoDestinatario}
+            onChangeText={setEnderecoDestinatario}
+          />
+        </View>
         <View>
-          <TouchableOpacity style={styles.botom} >
-            <Text style={styles.txtbotom}>login</Text>
+          <TouchableOpacity 
+            style={styles.botom}
+            onPress={() => postData()}
+          >
+            <Text style={styles.txtbotom}>Solicitar demanda</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView >
+      <View style={styles.fim}>
+
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    //alignItems: 'center',
-    flex: 1,
     backgroundColor: 'white',
-    //marginLeft: 15,
-    
-    
   },
   topo: {
+    margin: -5,
     width: '100%',
     height: '20%',
     flexDirection: 'row',
@@ -187,34 +272,35 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontStyle: 'italic'
   },
-
   square: {
     width: 350,
     height: 900,
     marginLeft: 20,
     borderRadius: 15,
-    //marginHorizontal: 5,
     alignItems: "center",
     justifyContent: 'center',
-    backgroundColor: 'white', // Para garantir que a sombra seja visível
-    shadowColor: 'gray',  // Cor da sombra
-    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
-    shadowOpacity: 1.25,  // Opacidade da sombra
-    shadowRadius: 3.84,  // Raio da sombra
-    elevation: 5,  // Para Android, adiciona elevação
+    backgroundColor: 'white',
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   minisquare: {
-    width: '60%',
+    margin: 5,
+    alignContent: 'center',
+    alignItems: 'center',
+    width: 280,
+    height: 400,
     aspectRatio: 0.65,
     borderRadius: 15,
     marginHorizontal: 5,
-    alignItems: "center",
-    backgroundColor: 'white', // Para garantir que a sombra seja visível
-    shadowColor: 'gray',  // Cor da sombra
-    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
-    shadowOpacity: 1.25,  // Opacidade da sombra
-    shadowRadius: 3.84,  // Raio da sombra
-    elevation: 5,  // Para Android, adiciona elevação
+    backgroundColor: 'white',
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -226,12 +312,12 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     width: '85%',
     height: 45,
-    backgroundColor: 'white', // Para garantir que a sombra seja visível
-    shadowColor: 'gray',  // Cor da sombra
-    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
-    shadowOpacity: 0.25,  // Opacidade da sombra
-    shadowRadius: 3.84,  // Raio da sombra
-    elevation: 5,  // Para Android, adiciona elevação
+    backgroundColor: 'white',
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   inputContainerPV: {
     flexDirection: 'row',
@@ -242,12 +328,12 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     width: '40%',
     height: 45,
-    backgroundColor: 'white', // Para garantir que a sombra seja visível
-    shadowColor: 'gray',  // Cor da sombra
-    shadowOffset: { width: 0, height: 4 },  // Deslocamento da sombra
-    shadowOpacity: 0.25,  // Opacidade da sombra
-    shadowRadius: 3.84,  // Raio da sombra
-    elevation: 5,  // Para Android, adiciona elevação
+    backgroundColor: 'white',
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   viewPV: {
     flexDirection: 'row',
@@ -260,8 +346,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   botom: {
-    width: 160,
-    height: 43,
+    width: 180,
+    height: 50,
     backgroundColor: 'white',
     borderRadius: 16,
     alignItems: 'center',
@@ -269,19 +355,98 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 20,
     backgroundColor: 'red',
-    backgroundColor: 'red', // Para garantir que a sombra seja visível
-    shadowColor: 'gray',  // Cor da sombra
-    shadowOffset: { width: 0, height: 6 },  // Deslocamento da sombra
-    shadowOpacity: 0.75,  // Opacidade da sombra
-    shadowRadius: 3.84,  // Raio da sombra
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.75,
+    shadowRadius: 3.84,
     elevation: 5,
-    marginBottom: "8%",
-    marginTop: "6%",
   },
   txtbotom: {
     fontSize: 20,
     color: 'white',
   },
+  centeredView: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 2,
+    marginBottom: 3,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    marginTop: 20,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: 'red',
+  },
+  buttonClose: {
+    backgroundColor: 'red',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 5,
+  },
+  checkBoxI: {
+    marginTop: 9,
+  },
+  checkBox: {
+    margin: 5,
+  },
+  modalTextTT: {
+    alignItems: 'center',
+    fontSize: 20,
+    margin: 6,
+  },
+  modalTextT: {
+    marginTop: 2,
+    marginBottom: 3,
+    alignItems: 'left',
+    fontSize: 16,
+    fontStyle: 'italic',
+  },
+  textGeral: {
+    alignItems: 'center',
 
+  },
+  modalTextColEnt: {
+  },
+  modalTextMet: {
+    fontSize: 25,
+    margin: 10,
+  },
+  modalTextT2: {
+    marginTop: 2,
+    marginBottom: 3,
+    alignItems: 'left',
+    fontSize: 20,
+    fontStyle: 'italic',
+  },
+  modalText2: {
+    marginTop: 2,
+    fontSize: 10,
+    color: 'red',
+  },
+  fim: {
+    height: 200,
+  }
 });
-

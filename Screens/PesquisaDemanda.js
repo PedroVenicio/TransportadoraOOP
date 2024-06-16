@@ -11,7 +11,12 @@ export default function Pesquisa({ navigation }) {
     async function getDemanda() {
       try{
         const response = await axios.get('http://localhost:3000/demanda');
-        setData(response.data.demandas);
+        if (search !== ''){
+          setData(response.data.demandas); //fazer atribuir apenas a array que tem o codigo do valor de "serach"
+        }
+        else{
+          setData(response.data.demandas);
+        }  
         console.log(response.data)
       } catch (e) {
         console.log(e);
@@ -29,7 +34,7 @@ export default function Pesquisa({ navigation }) {
         placeholderTextColor="gray"
         id='search'
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChangeText={setSearch}
         />
         </View>
         <View style={[styles.square1, styles.red]}>
@@ -51,7 +56,7 @@ export default function Pesquisa({ navigation }) {
         ) : (
           data.map((demanda) => {
             return(
-              <View key={demanda.carga}>
+              <View key={demanda.codigo}>
                 <Text>
                   {demanda.codigo} {demanda.carga} {demanda.valor} {demanda.remetente} {demanda.enderecoRemetente} {demanda.destinatario} {demanda.enderecoDestinatario}{''}
                 </Text>
