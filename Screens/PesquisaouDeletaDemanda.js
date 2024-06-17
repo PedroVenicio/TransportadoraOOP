@@ -1,40 +1,54 @@
-import React, { useState, useContext }  from 'react';
-import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState }  from 'react';
+import { View, StyleSheet, Text, TextInput, Image, TouchableOpacity } from 'react-native';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { Feather } from '@expo/vector-icons';
 import axios from 'axios';
-import { UserContext } from './UserContext';
 
-export default function Pesquisa({ navigation }) {
+export default function PesquisaouDeletaDemanda({ navigation }) {
 
   const [search, setSearch] = useState('');
   const [data, setData] = useState([]);
-  const { userID } = useContext(UserContext);
 
-    async function getDemanda() {
-      try{
-        console.log('pesquisa: ', search)
-        const response = await axios.get('http://localhost:3000/demanda');
+  async function getDemanda() {
+    try{
+      const response = await axios.get('http://localhost:3000/demanda');
+      if (search !== ''){
         const demandas = response.data.demandas.filter(demanda => {
-          if (search !== '') {
-            return demanda.codigo == search && demanda.codusuario === userID;
-          } else {
-            return demanda.codusuario === userID;
-          }
-        });
-        setData(demandas);
-        console.log(response.data)
-      } catch (e) {
-        console.log(e);
+                  return demanda.codigo == search;
+                })
+        setData(demandas)
       }
+      else{
+        setData(response.data.demandas);
+      }  
+      console.log(response.data)
+    } catch (e) {
+      console.log(e);
     }
+  }
+
+  async function deleteDemanda(codigo) {
+    try {
+      await axios.delete('http://localhost:3000/demanda', {
+        data: {
+          codigo: codigo,
+        },
+      });
+      setData(prevData => prevData.filter(demanda => demanda.codigo !== codigo));
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
-    
+
     <View style={styles.container}>
       <View style={styles.campoPesquisa}>
         <TextInput
         style={styles.inputContainer}
         placeholder='Pesquise a demanda pelo código:'
         placeholderTextColor="gray"
+        id='serach'
         value={search}
         onChangeText={setSearch}
         />
@@ -49,22 +63,27 @@ export default function Pesquisa({ navigation }) {
       </View> 
       <View style={styles.resultadoPesquisa}>
         <ScrollView>
-        <Text>
-          Suas demandas
-        </Text>
-        {data.length <= 0 ? (
-          <Text>Pesquisando...</Text>
-        ) : (
-          data.map((demanda) => {
-            return(
-              <View key={demanda.codigo}>
-                <Text>
-                  {demanda.codigo} {demanda.carga} {demanda.valor} {demanda.remetente} {demanda.enderecoRemetente} {demanda.destinatario} {demanda.enderecoDestinatario}{''}
-                </Text>
-              </View>
-            );
-          })
-        )}
+          <Text>
+            Suas demandas
+          </Text>
+          {data.length <= 0 ? (
+            <Text>Pesquisando...</Text>
+          ) : (
+            data.map((demanda) => {
+              return(
+                <View key={demanda.codigo}>
+                  <Text>
+                    {demanda.codigo} {demanda.carga} {demanda.valor} {demanda.remetente} {demanda.enderecoRemetente} {demanda.destinatario} {demanda.enderecoDestinatario}{''}
+                  </Text>
+                  <TouchableOpacity
+                  onPress={() => deleteDemanda(demanda.codigo)}
+                  >
+                    <Feather name="trash-2" size={24} color="red" />
+                  </TouchableOpacity>
+                </View>
+              );
+            })
+          )}
         </ScrollView>
       </View>
     </View>

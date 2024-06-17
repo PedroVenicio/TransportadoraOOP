@@ -1,36 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import axios from 'axios';
+import { UserContext } from './UserContext';
 
 export default function Login({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   
-  const [data, setData] = useState([]);
+
+  const { userID, setUserID } = useContext(UserContext);
 
   async function Submit() {
     try {
       const response = await axios.get('http://localhost:3000/usuario');
-      setData(response.data.usuarios);
       console.log(response.data);
-  
-      console.log(data); // Verificar se os dados estão corretamente atualizados
-  
       let userFound = false;
+      let adminFound = false;
       for (const usuario of response.data.usuarios) {
         if (usuario.login === username && usuario.senha === password) {
+          setUserID(usuario.codigo);
           userFound = true;
           break;
         }
+        else{
+          const response = await axios.get('http://localhost:3000/admin');
+          for (const admin of response.data.admins){
+            if (admin.login === username & admin.senha === password){
+              adminFound = true;
+              break;
+            }
+          }
+        }
       }
-  
-      if (userFound) {
+
+      if (adminFound) {
+        navigation.navigate('Menuadm')
+        setUsername('');
+        setPassword('');
+      }
+      else if (userFound) {
         navigation.navigate('Home');
         setUsername('');
         setPassword('');
-      } else {
+      }
+      else {
         alert('Dados inválidos');
       }
     } catch (error) {

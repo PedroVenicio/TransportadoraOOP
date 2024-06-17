@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,  useContext } from 'react';
 import { TextInput, StyleSheet, Image, TouchableOpacity, Text, View, ScrollView, Alert, Modal, Pressable } from 'react-native';
 import { Feather, Fontisto, MaterialIcons, FontAwesome5, Entypo } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements';
 import axios from 'axios';
+import { UserContext } from './UserContext';
 
 export default function Demanda({ navigation }) {
   const [remetente, setRemetente] = useState('');
@@ -15,6 +16,8 @@ export default function Demanda({ navigation }) {
   const [enderecoDestinatario, setEnderecoDestinatario] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMethod, setSelectedMethod] = useState(null);
+
+  const { userID } = useContext(UserContext);
 
   const methods = ['A', 'B', 'C', 'D', 'E'];
 
@@ -32,6 +35,8 @@ export default function Demanda({ navigation }) {
           volumeCarga: volume,
           codcaminhao: 1, 
           valor: valorCargaSegurada,
+          codusuario: userID,
+          metodoEntrega: selectedMethod,
         },
         alert('Demanda criada'),
         setRemetente(''),
