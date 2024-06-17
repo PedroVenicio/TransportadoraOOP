@@ -1,5 +1,5 @@
 # Front-end
-# React-native + Expo + Axios + JSON Web Token
+# React-native + Expo + Axios 
 
 React-native: Utilizado para criar interfaces de usuário estilizadas e funcionais.
 
