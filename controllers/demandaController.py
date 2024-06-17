@@ -7,7 +7,7 @@ def demanda_controller():
             try:
                 data = request.get_json()
                 print(data)
-                demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['volumeCarga'], data['codcaminhao'], data['valor'])
+                demanda = Demanda(data['remetente'], data['enderecoRemetente'], data['destinatario'], data['enderecoDestinatario'], data['carga'], data['pesoCarga'], data['volumeCarga'], data['codcaminhao'], data['valor'], data['codusuario'], data['metodoEntrega'])
                 db.session.add(demanda)
                 db.session.commit()
                 return 'demanda cadastrada com sucesso', 200
@@ -36,8 +36,12 @@ def demanda_controller():
                 put_demanda.enderecoDestinatario = data.get('enderecoDestinatario', put_demanda.enderecoDestinatario)
                 put_demanda.carga = data.get('carga', put_demanda.carga)
                 put_demanda.pesoCarga = data.get('pesoCarga', put_demanda.pesoCarga)
+                put_demanda.volumeCarga = data.get('volumeCarga', put_demanda.volumeCarga)
                 put_demanda.codcaminhao = data.get('codcaminhao', put_demanda.codcaminhao)
                 put_demanda.valor = data.get('valor', put_demanda.valor)
+                put_demanda.codusuario = data.get('codusuario', put_demanda.codusuario)
+                put_demanda.metodoEntrega = data.get('metodoEntrega', put_demanda.metodoEntrega)
+
                 db.session.commit()
                 return 'demanda atualizado com sucesso', 200
             except Exception as e:

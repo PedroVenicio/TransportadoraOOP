@@ -16,36 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `demanda`
+-- Table structure for table `caminhao`
 --
 
-DROP TABLE IF EXISTS `demanda`;
+DROP TABLE IF EXISTS `caminhao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `demanda` (
+CREATE TABLE `caminhao` (
   `codigo` int NOT NULL AUTO_INCREMENT,
-  `remetente` varchar(50) DEFAULT NULL,
-  `enderecoRemetente` varchar(50) DEFAULT NULL,
-  `destinatario` varchar(50) DEFAULT NULL,
-  `enderecoDestinatario` varchar(50) DEFAULT NULL,
-  `carga` varchar(50) DEFAULT NULL,
-  `pesoCarga` float(8,2) DEFAULT NULL,
-  `codcaminhao` int DEFAULT NULL,
-  `valor` float(8,2) DEFAULT NULL,
+  `marca` varchar(50) DEFAULT NULL,
+  `kmrodados` int DEFAULT NULL,
+  `codmotorista` int DEFAULT NULL,
+  `capacidade` float(8,2) DEFAULT NULL,
   PRIMARY KEY (`codigo`),
-  KEY `codcaminhao` (`codcaminhao`),
-  CONSTRAINT `demanda_ibfk_1` FOREIGN KEY (`codcaminhao`) REFERENCES `caminhao` (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `codmotorista` (`codmotorista`),
+  CONSTRAINT `caminhao_ibfk_1` FOREIGN KEY (`codmotorista`) REFERENCES `motorista` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `demanda`
+-- Dumping data for table `caminhao`
 --
 
-LOCK TABLES `demanda` WRITE;
-/*!40000 ALTER TABLE `demanda` DISABLE KEYS */;
-INSERT INTO `demanda` VALUES (1,'mercado livre','Rua silicio 12','satc','Rua Pascoal 15','Banco de supino',999.00,1,1234.00),(3,'shopee','coreia do norte','mariane melo','casa dela','fralda',2.00,4,10.00);
-/*!40000 ALTER TABLE `demanda` ENABLE KEYS */;
+LOCK TABLES `caminhao` WRITE;
+/*!40000 ALTER TABLE `caminhao` DISABLE KEYS */;
+INSERT INTO `caminhao` VALUES (1,'volvo',0,1,1000.00),(4,'scania',130000,3,2000.00);
+/*!40000 ALTER TABLE `caminhao` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-02 22:26:23
+-- Dump completed on 2024-06-17  0:29:59
