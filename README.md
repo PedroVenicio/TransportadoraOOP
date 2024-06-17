@@ -7,8 +7,6 @@ Expo: ele facilita muito alguns dos processos do React Native, sendo uma ferrame
 
 Axios: Utilizado para realizar as solicitações HTTP, como GET, POST, PUT, DELETE, etc., facilitando a comunicação entre o aplicativo React e o servidor backend.
 
-JSON Web Token: utilizado para que quando o usuário, admin ou motorista acessar o aplicativo, quando recarregar a página, não seja necessário refazer o login.
-
 # Para startar o projeto :
 npx expo start
 
