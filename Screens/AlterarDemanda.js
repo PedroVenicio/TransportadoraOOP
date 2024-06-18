@@ -66,7 +66,7 @@ export default function AlterarDemanda({ navigation }) {
         <ScrollView style={styles.container}>
             <View style={styles.square}>
                 <View style={styles.inputContainer}>
-                <FontAwesome name="code" size={24} color="red" />
+                    <FontAwesome name="code" size={24} color="red" />
                     <TextInput
                         style={styles.input}
                         placeholder="codigo: "
